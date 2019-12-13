@@ -1,0 +1,27 @@
+
+# Get localhost:3000/products 
+@uri=http://localhost:3000/
+//作用相当于baseurl
+GET {{uri}}products
+
+POST {{uri}}products
+Content-Type: application/json
+//表示post一个请求接口，发送json格式的数据
+
+{
+    "title": "产品4"
+}
+
+//修改
+PUT {{uri}}products/id的值
+Content-Type: application/json
+{
+    "title": "产品44"
+}
+
+//删除
+DELETE  {{uri}}products/id的值
+Content-Type: application/json
+{
+    "title": "产品44"
+}
