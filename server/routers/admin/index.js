@@ -83,7 +83,8 @@ app.post('/admin/api/upload',authMiddleware(), upload.single('file'), async(req,
 	//获取上传文件，由于express本身不能获取上传文件的内容，所以需要中间件专门处理上传数据，要安装包multer
 	//upload.single表示接受的是单个文件的上传，同时加上字段名file，字段名可进行配置
 	const file = req.file
-	file.url = `http://localhost:3000/uploads/${file.filename}` //拼接出一个用来在前端显示静态文件的url
+	  // file.url = `http://localhost:3000/uploads/${file.filename}` //拼接出一个用来在前端显示静态文件的url
+  file.url = `http://139.224.71.169/uploads/${file.filename}`//localhost3000本地上传，其他人电脑上显示不出来，所以改为线上地址
 res.send(file)  
 })
 
