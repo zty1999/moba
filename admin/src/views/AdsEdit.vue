@@ -3,7 +3,7 @@
     <h1 >{{id ? '编辑': '新建'}}广告位</h1>
     <el-form label-width='120px' @submit.native.prevent="save">
       <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
+        <el-input v-model="model.name" ref="focus"></el-input>
       </el-form-item>
       <el-form-item label="广告">
       <el-button @click="model.items.push({})" size='small'><i class="el-icon-plus"></i> 添加广告</el-button>
@@ -48,6 +48,10 @@ export default {
       },
       
     }
+  },
+  mounted() {
+    //window.console.log(this.$refs.text)
+    this.$refs.focus.focus()
   },
   created() {
     this.id && this.fetch()

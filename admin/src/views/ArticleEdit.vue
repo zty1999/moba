@@ -39,6 +39,7 @@ export default {
       categories: [],
     };
   },
+
   methods: {
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       //富文本编辑器的图片上传  编辑器自带图片上传使用base64进行编码存储在接口中，使接口体积变大

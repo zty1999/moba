@@ -14,15 +14,16 @@ const router = new VueRouter ({
       children: [
         {path: '/', name: 'home', component: Home }, 
         {path: '/articles/:id',name: 'articles', component: Article,props: true },
-        {path: '/strategy', component: Strategy }, 
-        {path: '/match', component: Match }, 
+        {path: '/strategy', name: 'strategy', component: Strategy }, 
+        {path: '/match', name: 'match', component: Match }, 
       ]
     }, 
     {path: '/heroes/:id',name: 'heroes', component: Heroes,props: true },
 
 
     
-  ]
+  ],
+  mode: 'history'
 })
 
 export default router

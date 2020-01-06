@@ -1,11 +1,24 @@
 <template>
-	<div class="swiper">
+	<div class="swiper pb-3">
 	<swiper :options="swiperOption"  class="swiper-container" ref="mySwiper">
     <!-- slides @someSwiperEvent="callback" -->
-    <swiper-slide ><img class="w-100" src="@/assets/images/home/home-swiper1.jpeg" alt=""> </swiper-slide>
-    <swiper-slide ><img class="w-100" src="@/assets/images/home/home-swiper2.jpeg" alt=""></swiper-slide>
-    <swiper-slide ><img class="w-100" src="@/assets/images/home/home-swiper3.jpeg" alt=""></swiper-slide>
-    <!-- <swiper-slide><img class="w-100" src="@/assets/images/home/home-swiper4.jpg" alt=""></swiper-slide> -->
+    <swiper-slide >
+      <a href="http://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&e_code=501022&idataid=295187&tid=579806">
+        <img class="w-100" src="@/assets/images/home/homeswiper1.jpeg" alt=""> 
+      </a>
+    </swiper-slide>
+    <swiper-slide >
+      <a href="http://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&e_code=501085&idataid=295234&tid=579912">
+        <img class="w-100" src="@/assets/images/home/homeswiper2.jpeg" alt=""> 
+      </a>
+    </swiper-slide>
+    <swiper-slide >
+      <a href="http://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&e_code=500771&idataid=294923&tid=578932">
+        <img class="w-100" src="@/assets/images/home/homeswiper3.jpeg" alt=""> 
+      </a>
+    </swiper-slide>
+    <!-- <swiper-slide ><img class="w-100" src="@/assets/images/home/homeswiper2.jpeg" alt=""></swiper-slide>
+    <swiper-slide ><img class="w-100" src="@/assets/images/home/homeswiper3.jpeg" alt=""></swiper-slide> -->
     <!-- Optional controls -->
     <div class="swiper-pagination pagination-home text-right px-3 pb-1"  slot="pagination"></div>
     <!-- <div class="swiper-button-prev" slot="button-prev"></div>
@@ -84,14 +97,22 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
       window.console.log('this is current swiper instance object', this.swiper)
       this.swiper.slideTo(3, 1000, true)
-		},
-		// methods: {
-		// 	callback() {
-		// 		const mySwiper = new Swiper('.swiper-container',{ speed: 400});
-		// 		// let mySwiper = document.querySelector('.swiper-container').swiper
-		// 	window.console.log(mySwiper)
-		// 	}
-		// }
+    },
+    created() {
+      // this.GetHomeSwiper();
+    },
+		methods: {
+      // async GetHomeSwiper() {
+      //   const res = await this.$request.get('ads')
+      //   this.ads = res.data;
+      //   window.console.log(res.data);
+      // }
+			// callback() {
+			// 	const mySwiper = new Swiper('.swiper-container',{ speed: 400});
+			// 	// let mySwiper = document.querySelector('.swiper-container').swiper
+			// window.console.log(mySwiper)
+			// }
+		}
   }
 </script>
 <style lang="scss">

@@ -5,7 +5,12 @@ module.exports = app => {
   const Article = mongoose.model('Article')
   const Category = mongoose.model('Category')
   const Hero = mongoose.model('Hero')
-
+  //homeSwiper接口
+  router.get('/ads', async (req, res) => {
+    const data = await Ad
+    .findById(req.params.id)
+    res.send(data)
+  })
   //导入新闻数据
   router.get('/news/init', async (req, res) => {
     const parent = await Category.findOne({

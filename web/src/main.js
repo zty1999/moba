@@ -10,6 +10,9 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 Vue.config.productionTip = false
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 import './assets/css/style.scss'
 import './assets/iconfont/iconfont.css'

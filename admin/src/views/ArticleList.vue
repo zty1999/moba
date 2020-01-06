@@ -4,9 +4,14 @@
 </style>
 <template>
   <div>
-    <h1>文章列表</h1>
-    <el-table :data="items">
-      <el-table-column prop="_id" label="ID" width="240"></el-table-column>
+    <header class="page-header">
+      <h2>文章列表</h2>
+      <div class="search-wrapper">
+        <input type="text" v-model="searchVal" placeholder="search...">
+      </div>
+    </header>
+    <el-table :data="newitems">
+      <!-- <el-table-column prop="_id" label="ID" width="240"></el-table-column> -->
       <el-table-column prop="title" label="标题"></el-table-column>
       <el-table-column fixed="right" label="操作" width="180">
         <template slot-scope="scope">
@@ -25,8 +30,19 @@
 export default {
   data() {
     return {
-      items: []
+      items: [],
+      searchVal: ''
     };
+  },
+  created() {
+    this.fetch();
+  },
+  computed: {
+    newitems() {
+      return this.items.filter((item) => {
+        return item.title.includes(this.searchVal)
+      })
+    }
   },
   methods: {
     async fetch() {
@@ -48,8 +64,26 @@ export default {
       });
     }
   },
-  created() {
-    this.fetch();
-  }
+  
 };
 </script>
+<style lang="scss" scoped>
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  h2 {
+    flex: 1;
+  }
+  .search-wrapper {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    input {
+      padding: 5px 10px;
+      border: none;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
+</style>

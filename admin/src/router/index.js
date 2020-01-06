@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Main from '../views/Main.vue'
+import Welcome from '../views/Welcome.vue'
 import CategoryEdit from '../views/CategoryEdit.vue'
 import CategoryList from '../views/CategoryList.vue'
 
@@ -23,16 +24,17 @@ import AdminUserList from '../views/AdminUserList.vue'
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: '/',
-  //   redirect: '/login',
-  // },
+  {
+    path: '/',
+    redirect: '/welcome',
+  },
   {path: '/login',component: Login,meta: {isPublic: true}},
   {
     path: '/',
     name: 'main',
     component: Main,
     children: [
+      {path: 'welcome', component: Welcome},
       {path: 'category/create', component: CategoryEdit},
       {path: 'category/edit/:id', component: CategoryEdit, props: true},
       {path: 'category/list', component: CategoryList},

@@ -1,5 +1,5 @@
 <template>
-  <div class="card bg-white px-3 mt-3">
+  <div class="card bg-white px-3 ">
 			<div class="card-header d-flex ai-center py-3 my-3 ">
 				<i class="iconfont mr-2" :class="`${icon}`"></i>
 				<span class="fs-lg flex-grow-1">{{title}}</span>

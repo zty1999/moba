@@ -1,11 +1,16 @@
 <template>
-  <div>
+  <div class="home-page">
+    <!-- 轮播图 -->
     <home-swiper></home-swiper>
-    <div class="nav-icons bg-white mt-3 text-center pt-3 text-dark-1">
+
+    <!-- 导航菜单 -->
+    <div class="nav-icons bg-white  text-center pt-3 mb-3 text-dark-1">
       <div class="d-flex flex-wrap">
-        <div class="nav-items mb-3" v-for="n in 10" :key="n">
-          <i class="sprite sprite-news mt-2"></i>
-          <div class="pt-1 fs-sm">爆料站</div>
+        <div class="nav-item mb-3 pt-3"  v-for="item in navMenu" :key="item.text">
+          <a class="nav-item-link" :href="item.url">
+            <i :class="item.iconClass" ></i>
+            <div >{{item.text}}</div>
+          </a>
         </div>
       </div>
       <div class="bg-light py-2 fs-sm">
@@ -13,6 +18,8 @@
         <span>收起</span>
       </div>
     </div>
+
+    <!-- 新闻资讯 分类列表 -->
     <m-list-card icon="icon-cc-menu-circle" title="新闻资讯" :categories="newsCats">
       <template #items="{category}">
         <!-- 这里的category是m-list-card组件里定义的循环变量
@@ -27,6 +34,7 @@
         </router-link>
       </template>
     </m-list-card>
+    <!-- 英雄列表 -->
     <m-list-card icon="icon-card-hero" title="英雄列表" :categories="heroCats">
       <template #items="{category}">
         <!-- 这里的category是m-list-card组件里定义的循环变量
@@ -39,6 +47,7 @@
         </div>
       </template>
     </m-list-card>
+    <!-- 视频 -->
 		<m-list-card icon="icon-card-hero" title="精彩视频" :categories="heroCats">
     </m-list-card>
   </div>
@@ -59,6 +68,22 @@ export default {
   },
   data() {
     return {
+      navMenu: [
+        {iconClass: 'sprite sprite-news',text: '爆料站',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-story',text: '故事站',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-mall',text: '周边商城',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-dnf',text: '体验服',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-novice',text: '新人专区',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-inherit',text: '荣耀·传承',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-sciamachy',text: '模拟站资料库',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-campsite',text: '王者营地',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-official-account',text: '公众号',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-version',text: '版本介绍',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-djhj',text: '对局环境',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-wxwzt',text: '无限王者团',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'},
+        {iconClass: 'sprite sprite-cyhdy',text: '创意互动营',url: 'https://pvp.qq.com/m/m201706/coming/index.htm'}
+      ],
+
       newsCats: [],
       heroCats: []
     };
@@ -69,11 +94,7 @@ export default {
     this.fetchHeroCats();
   },
   mounted() {},
-  // watch: {
-  //   // id() {
 
-  //   // }
-  // },
   methods: {
     async fetchNewsCats() {
       const res = await this.$request.get("news/list");
@@ -84,7 +105,9 @@ export default {
       const res = await this.$request.get("heroes/list");
       this.heroCats = res.data;
       window.console.log(res.data);
-    }
+    },
+    // MenuClick() {
+    // }
   }
 };
 </script>
@@ -93,12 +116,16 @@ export default {
 .nav-icons {
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
-  .nav-items {
+  .nav-item {
     width: 25%;
     border-right: 1px solid $border-color;
     &:nth-child(4n) {
       //第几个不加右边框
       border-right: none;
+    }
+    .nav-item-link {
+      display: block;
+
     }
   }
 }

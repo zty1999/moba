@@ -1,11 +1,16 @@
 <template>
   <div class="category-list">
-    <h1>分类列表</h1>
- 
+    <header class="page-header">
+      <h2>分类列表</h2>
+      <div class="search-wrapper">
+        <input type="text" v-model="searchVal" placeholder="search...">
+      </div>
+    </header>
     <el-table :data="items" >
-      <el-table-column prop="_id" label="ID" width="240"></el-table-column>
+      <!-- <el-table-column prop="_id" label="ID" width="240"></el-table-column> -->
       <el-table-column prop="parent.name" label="上级分类" width="240"></el-table-column>
       <el-table-column prop="name" label="分类名称" width="140"></el-table-column>
+      <el-table-column class="empty"></el-table-column>
 			<el-table-column
       fixed="right"
       label="操作"
@@ -23,12 +28,23 @@
 export default {
   data() {
 		return {
-			items: []
+      items: [],
+      searchVal: '',
+      
 		}
 	},
 	created() {
 		this.fetch()
-	},
+  },
+  computed: {
+    //搜索功能
+    newitems() {
+      return this.items.filter((item) => {
+        return item.name.includes(this.searchVal)
+      })
+    }    
+
+  },
 	methods: {
 		async fetch() {//获取数据
 			const res =await this.$request.get('rest/categories')
@@ -58,6 +74,26 @@ export default {
 
 }
 </script>
-<style lang="sass" scoped>
-
+<style lang="scss" scoped>
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  h2 {
+    flex: 1;
+  }
+  .search-wrapper {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    input {
+      padding: 5px 10px;
+      border: none;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
+.empty {
+  flex: 1;
+}
 </style>

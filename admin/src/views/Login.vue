@@ -36,6 +36,7 @@ export default {
         type: 'sucess',
         message: '登录成功'
       })
+      // this.$bus.$emit('login',this.model);
       window.console.log(this.model,res)
     }
   }

@@ -5,7 +5,7 @@
     <el-tabs value='basic' type="border-card">
       <el-tab-pane label="基本信息" name="basic">
       <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
+        <el-input v-focus v-model="model.name"></el-input>
       </el-form-item>
       <el-form-item label="称号">
         <el-input v-model="model.title"></el-input>
@@ -157,6 +157,7 @@ export default {
     }
  
   },
+ 
   data() {
     return {
       model: {
@@ -183,8 +184,16 @@ export default {
       },
       categories: [],
       goods: []
-      
+    }
+  },
+   //局部自定义指令
+  directives: {
+    focus: {
+      inserted(el) {
+        // el.focus()//无效  原因未知 故使用下面这行代码
+        el.getElementsByTagName('input')[0].focus()
 
+      }
     }
   },
   created() {
@@ -192,7 +201,6 @@ export default {
     this.fetchGoods(),
     this.fetchHeroes(),
     this.id && this.fetch()
-    
 
   },
   methods: {
@@ -214,6 +222,7 @@ export default {
         
         
       // },
+   
     async save() {
       let res
       if (this.id) {
